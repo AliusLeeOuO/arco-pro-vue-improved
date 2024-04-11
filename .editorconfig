@@ -1,0 +1,24 @@
+root = true
+
+# 对所有文件应用以下规则
+[*]
+# 使用空格进行缩进
+indent_style = space
+# 文件末尾使用 LF (Unix-like 系统的换行符) 作为行结束符
+end_of_line = lf
+# 文件编码使用 UTF-8
+charset = utf-8
+# 保存文件时删除行尾的空白字符
+trim_trailing_whitespace = true
+# 确保在文件末尾存在一个新行
+insert_final_newline = true
+
+[*.md]
+# 不限制每行的长度
+max_line_length = off
+# 不删除行尾的空白字符
+trim_trailing_whitespace = false
+
+[*.{ts,js,vue,css}]
+# 使用 2 个空格的缩进大小
+indent_size = 2
