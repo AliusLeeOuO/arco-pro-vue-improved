@@ -1,7 +1,7 @@
 <script lang="tsx">
 import { defineComponent, ref, h, compile, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRoute, useRouter, RouteRecordRaw } from 'vue-router'
+import { useRoute, useRouter, type RouteRecordRaw } from 'vue-router'
 import type { RouteMeta } from 'vue-router'
 import { useAppStore } from '@/store'
 import { listenerRouteChange } from '@/utils/route-listener'
@@ -76,8 +76,7 @@ export default defineComponent({
 
         const keySet = new Set([...menuOpenKeys, ...openKeys.value])
         openKeys.value = [...keySet]
-
-        selectedKey.value = [activeMenu || menuOpenKeys[menuOpenKeys.length - 1]]
+        selectedKey.value = [(activeMenu as string) || menuOpenKeys[menuOpenKeys.length - 1]]
       }
     }, true)
     const setCollapse = (val: boolean) => {
@@ -96,14 +95,14 @@ export default defineComponent({
                   key={element?.name}
                   v-slots={{
                     icon,
-                    title: () => h(compile(t(element?.meta?.locale || '')))
+                    title: () => h(compile(t((element?.meta?.locale as string) || '')))
                   }}
                 >
                   {travel(element?.children)}
                 </a-sub-menu>
               ) : (
                 <a-menu-item key={element?.name} v-slots={{ icon }} onClick={() => goto(element)}>
-                  {t(element?.meta?.locale || '')}
+                  {t((element?.meta?.locale as string) || '')}
                 </a-menu-item>
               )
             nodes.push(node as never)

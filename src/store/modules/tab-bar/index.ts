@@ -7,11 +7,11 @@ import { TabBarState, TagProps } from './types'
 const formatTag = (route: RouteLocationNormalized): TagProps => {
   const { name, meta, fullPath, query } = route
   return {
-    title: meta.locale || '',
+    title: typeof meta.locale === 'string' ? meta.locale : '',
     name: String(name),
     fullPath,
     query,
-    ignoreCache: meta.ignoreCache
+    ignoreCache: typeof meta.ignoreCache === 'boolean' ? meta.ignoreCache : undefined
   }
 }
 
